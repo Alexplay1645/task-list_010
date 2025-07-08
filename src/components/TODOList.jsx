@@ -27,6 +27,12 @@ export default function TODOList() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      addTask();
+    }
+  };
+
   const updateTaskStatus = (id) => {
     const updatedTasks = tasks.map(task =>
       task.id === id ? { ...task, status: !task.status } : task
@@ -39,21 +45,27 @@ export default function TODOList() {
     setTasks(updatedTasks);
   };
 
-    const date = new Date();
-    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    const month = monthNames[date.getMonth()];
-    const day = date.getDate();
-    const year = date.getFullYear();
+  const date = new Date();
+  const monthNames = [
+    'January','February','March','April','May','June',
+    'July','August','September','October','November','December'
+  ];
+  const month = monthNames[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const formattedDate = month + ' ' + day + ', ' + year;
 
   return (
     <div className='container'>
       <h1>Note your tasks</h1>
+      <span>{formattedDate}</span>
 
       <div className='input-filed'>
         <input
           type='text'
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <label>Task name</label>
         <Icon type="add" onClick={addTask} />

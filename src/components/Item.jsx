@@ -7,7 +7,7 @@ export default function Item({ id, title, status, updateTaskStatus, removeTask }
   }
 
   return (
-    <li className={classes.join('')}>
+    <li className={classes.join(' ')}>
       <label>
         <input
           type="checkbox"
@@ -15,7 +15,7 @@ export default function Item({ id, title, status, updateTaskStatus, removeTask }
           onChange={() => updateTaskStatus(id)}
         />
         <span>{title}</span>
-        <Icon type="delete" onClick={() => removeTask(id)}></Icon>
+        <Icon type="delete" onClick={() => removeTask(id)} />
       </label>
     </li>
   );
